@@ -103,6 +103,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export PATH="$PATH:/home/pedro/.local/bin"
+export LANG=en_US.utf-8
 # export IDEA_JDK=/usr/lib/jvm/jdk-jetbrains
 alias vim="nvim"
 alias vi="nvim"
@@ -113,7 +114,6 @@ alias la='exa -a'
 alias ll='exa -lah'
 alias ls='exa --color=auto -la'
 # alias tmux="TERM=screen-256color tmux"
-
 
 
 alias luamake=/home/pedro/Builds/lua-language-server/3rd/luamake/luamake

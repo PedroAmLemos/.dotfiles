@@ -105,6 +105,7 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 
 myStartupHook :: X ()
 myStartupHook = do
+    spawnOnce "vmhgfs-fuse .host:/Shared /home/pedroamlemos/Documents/Shares"
     spawnOnce "setxkbmap -layout br"
     spawnOnce "xsetroot -cursor_name left_ptr"
     spawnOnce "conky -c $HOME/.config/conky/xmonad/doom-one-01.conkyrc"
