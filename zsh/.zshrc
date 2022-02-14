@@ -123,3 +123,4 @@ alias luamake=/home/pedro/Builds/lua-language-server/3rd/luamake/luamake
 # [ -f "/home/pedro/.ghcup/env" ] && source "/home/pedro/.ghcup/env" # ghcup-env
 export TERM=screen-256color-bce
 export GPG_TTY="$(tty)"
+DISABLE_AUTO_TITLE="true"
