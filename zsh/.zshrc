@@ -115,12 +115,11 @@ alias l='exa'
 alias la='exa -a'
 alias ll='exa -lah'
 alias ls='exa --color=auto -la'
-# alias tmux="TERM=screen-256color tmux"
-
 
 alias luamake=/home/pedro/Builds/lua-language-server/3rd/luamake/luamake
 # eval $(keychain --eval --quiet id_ed25519)
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # [ -f "/home/pedro/.ghcup/env" ] && source "/home/pedro/.ghcup/env" # ghcup-env
-export TERM=xterm-256color
+export TERM=screen-256color-bce
+export GPG_TTY="$(tty)"
