@@ -73,6 +73,7 @@ ZSH_THEME="robbyrussell"
 plugins=(git
 	zsh-autosuggestions
 	zsh-syntax-highlighting
+	ssh-agent
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -102,13 +103,14 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export PATH="$PATH:/home/pedro/.local/bin"
+export PATH="$PATH:/home/pedroamlemos/.local/bin"
 export LANG=en_US.utf-8
 # export IDEA_JDK=/usr/lib/jvm/jdk-jetbrains
 alias vim="nvim"
 alias vi="nvim"
 bindkey -s '^f' 'tmux-sessionizer^M'
 bindkey -s '^d' 'tmux-sessionizer /home/pedro/dotfiles/^M'
+bindkey '^ ' autosuggest-accept
 alias l='exa'
 alias la='exa -a'
 alias ll='exa -lah'
@@ -117,7 +119,8 @@ alias ls='exa --color=auto -la'
 
 
 alias luamake=/home/pedro/Builds/lua-language-server/3rd/luamake/luamake
-eval $(keychain --eval --quiet id_ed25519)
+# eval $(keychain --eval --quiet id_ed25519)
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # [ -f "/home/pedro/.ghcup/env" ] && source "/home/pedro/.ghcup/env" # ghcup-env
+export TERM=xterm-256color
