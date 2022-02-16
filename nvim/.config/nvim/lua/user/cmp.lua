@@ -116,7 +116,7 @@ cmp.setup {
     { name = "luasnip" },
     { name = "nvim_lsp", keyword_length = 2 },
     { name = "buffer", keyword_length = 5 },
-    { name = "cmp_tabnine" },
+    { name = "cmp_tabnine", keyword_length = 4 },
     { name = "path" },
   },
   confirm_opts = {
