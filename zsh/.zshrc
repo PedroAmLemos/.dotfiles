@@ -86,6 +86,7 @@ plugins=(git
          web-search
          copyfile
          copydir
+         # asdf
          )
 
 export FZF_BASE=/usr/bin/fzf
