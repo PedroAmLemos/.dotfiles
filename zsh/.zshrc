@@ -126,6 +126,7 @@ export GPG_TTY="$(tty)"
 
 
 alias ls='exa --icons'
+alias pacman='sudo pacman'
 bindkey '^ ' autosuggest-accept
 bindkey -s '^f' 'tmux-sessionizer^M'
 eval "$(starship init zsh)"
