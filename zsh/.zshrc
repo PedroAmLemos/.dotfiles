@@ -86,7 +86,7 @@ plugins=(git
          web-search
          copyfile
          copypath
-         ssh-agent
+         # ssh-agent
          # asdf
          )
 
