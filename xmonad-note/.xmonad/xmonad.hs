@@ -110,9 +110,10 @@ myStartupHook = do
     spawnOnce "picom --experimental-backends -b"
     spawnOnce "nitrogen --restore &"
     spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 0 --transparent true --alpha 0 --tint 0x282c34  --height 22 &"
-    spawnOnce "./.fehbg &"
     spawnOnce "dunst &"
     spawnOnce "nm-applet"
+    spawnOnce "volumeicon"
+    spawnOnce "ckb-next --background"
     setWMName "LG3D"
 
 
@@ -320,7 +321,7 @@ myManageHook = composeAll
      , className =? "Yad"             --> doCenterFloat
      , title =? "Mozilla Firefox"     --> doShift ( myWorkspaces !! 1 )
      , className =? "discord"         --> doShift ( myWorkspaces !! 5 )
-     , className =? "Brave-browser"   --> doShift ( myWorkspaces !! 3 )
+     , className =? "Brave-browser"   --> doShift ( myWorkspaces !! 1 )
      , className =? "vlc"             --> doShift ( myWorkspaces !! 7 )
      , className =? "Gimp"            --> doShift ( myWorkspaces !! 8 )
      , className =? "Vmware"          --> doShift ( myWorkspaces !! 4 )
@@ -334,6 +335,11 @@ myKeys =
         [ ("M-C-r", spawn "xmonad --recompile")       -- Recompiles xmonad
         , ("M-S-r", spawn "xmonad --restart")         -- Restarts xmonad
         , ("M-S-q", io exitSuccess)                   -- Quits xmonad
+        , ("<XF86AudioLowerVolume>", spawn "amixer set Master 5%- unmute")
+        , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
+        , ("<XF86AudioMute>", spawn "amixer set Master toggle")
+        , ("<XF86MonBrightnessUp>", spawn "lux -a 10%")
+        , ("<XF86MonBrightnessDown>", spawn "lux -s 10%")
 
     -- EXPLORER
         , ("M-S-e", spawn "dolphin")
@@ -462,7 +468,6 @@ main :: IO ()
 main = do
     -- Launching three instances of xmobar on their monitors.
     xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/doom-one-xmobarrc"
-    xmproc1 <- spawnPipe "xmobar -x 1 $HOME/.config/xmobar/doom-one-xmobarrc"
     -- the xmonad, ya know...what the WM is named after!
     xmonad $ ewmh def
         { manageHook         = myManageHook <+> manageDocks
@@ -482,8 +487,7 @@ main = do
         , focusedBorderColor = myFocusColor
         , logHook = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
               -- the following variables beginning with 'pp' are settings for xmobar.
-              { ppOutput = \x -> hPutStrLn xmproc0 x                          -- xmobar on monitor 1
-                              >> hPutStrLn xmproc1 x                          -- xmobar on monitor 2
+              { ppOutput = hPutStrLn xmproc0                          -- xmobar on monitor 1
               , ppCurrent = xmobarColor "#c792ea" "" . wrap "<box type=Bottom width=2 mb=2 color=#c792ea>" "</box>"         -- Current workspace
               , ppVisible = xmobarColor "#c792ea" "" . clickable              -- Visible but not current workspace
               , ppHidden = xmobarColor "#82AAFF" "" . wrap "<box type=Top width=2 mt=2 color=#82AAFF>" "</box>" . clickable -- Hidden workspaces

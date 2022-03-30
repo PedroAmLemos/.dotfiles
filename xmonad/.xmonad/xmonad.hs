@@ -337,13 +337,14 @@ myKeys =
         [ ("M-C-r", spawn "xmonad --recompile")       -- Recompiles xmonad
         , ("M-S-r", spawn "xmonad --restart")         -- Restarts xmonad
         , ("M-S-q", io exitSuccess)                   -- Quits xmonad
+        , ("<XF86MonBrightnessUp>", spawn "lux -a 10%")
+        , ("<XF86MonBrightnessDown>", spawn "lux -s 10%")
 
     -- EXPLORER
         , ("M-S-e", spawn "dolphin")
 
     -- KB_GROUP Run Prompt
         , ("M-S-<Return>", spawn "dmenu_run -i -p \"Run: \"") -- Dmenu
-
     -- KB_GROUP Other Dmenu Prompts
     -- In Xmonad and many tiling window managers, M-p is the default keybinding to
     -- launch dmenu_run, so I've decided to use M-p plus KEY for these dmenu scripts.
