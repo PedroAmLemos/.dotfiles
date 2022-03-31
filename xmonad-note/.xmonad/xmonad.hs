@@ -105,15 +105,20 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 
 myStartupHook :: X ()
 myStartupHook = do
-    spawnOnce "xsetroot -cursor_name left_ptr"
-    spawnOnce "conky -c $HOME/.config/conky/xmonad/doom-one-01.conkyrc"
-    spawnOnce "picom --experimental-backends -b"
-    spawnOnce "nitrogen --restore &"
-    spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 0 --transparent true --alpha 0 --tint 0x282c34  --height 22 &"
-    spawnOnce "dunst &"
+    spawn "killall conky"
+    spawn "killall trayer"
+    -- spawnOnce "dropbox-cli start"
     spawnOnce "nm-applet"
+    spawnOnce "blueman-applet &"
     spawnOnce "volumeicon"
+    spawnOnce "xsetroot -cursor_name left_ptr"
+    spawnOnce "picom --experimental-backends -b"
+    spawnOnce "dunst &"
+    spawnOnce "nitrogen --restore &"
     spawnOnce "ckb-next --background"
+
+    spawn "sleep 2 && conky -c $HOME/.config/conky/xmonad/doom-one-01.conkyrc"
+    spawn "sleep 2 && trayer --iconspacing 10 --edge top --align right --widthtype request --padding 8 --SetDockType true --SetPartialStrut true --expand true --monitor 0 --transparent true --alpha 0 --tint 0x282c34  --height 22 &"
     setWMName "LG3D"
 
 
@@ -467,7 +472,7 @@ myKeys =
 main :: IO ()
 main = do
     -- Launching three instances of xmobar on their monitors.
-    xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/doom-one-xmobarrc"
+    xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/doom-one-xmobarrc-note"
     -- the xmonad, ya know...what the WM is named after!
     xmonad $ ewmh def
         { manageHook         = myManageHook <+> manageDocks
