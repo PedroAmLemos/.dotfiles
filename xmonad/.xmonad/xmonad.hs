@@ -105,7 +105,8 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 
 myStartupHook :: X ()
 myStartupHook = do
-    spawnOnce "vmhgfs-fuse .host:/Shared /home/pedroamlemos/Documents/Shares"
+    -- spawnOnce "vmhgfs-fuse .host:/Shared /home/pedroamlemos/Documents/Shares"
+    spawnOnce "volumeicon"
     spawnOnce "setxkbmap -layout br"
     spawnOnce "xsetroot -cursor_name left_ptr"
     spawnOnce "conky -c $HOME/.config/conky/xmonad/doom-one-01.conkyrc"
@@ -323,7 +324,7 @@ myManageHook = composeAll
      , className =? "Yad"             --> doCenterFloat
      , title =? "Mozilla Firefox"     --> doShift ( myWorkspaces !! 1 )
      , className =? "discord"         --> doShift ( myWorkspaces !! 5 )
-     , className =? "Brave-browser"   --> doShift ( myWorkspaces !! 3 )
+     , className =? "Brave-browser"   --> doShift ( myWorkspaces !! 1 )
      , className =? "vlc"             --> doShift ( myWorkspaces !! 7 )
      , className =? "Gimp"            --> doShift ( myWorkspaces !! 8 )
      , className =? "Vmware"          --> doShift ( myWorkspaces !! 4 )
@@ -337,31 +338,13 @@ myKeys =
         [ ("M-C-r", spawn "xmonad --recompile")       -- Recompiles xmonad
         , ("M-S-r", spawn "xmonad --restart")         -- Restarts xmonad
         , ("M-S-q", io exitSuccess)                   -- Quits xmonad
-        , ("<XF86MonBrightnessUp>", spawn "lux -a 10%")
-        , ("<XF86MonBrightnessDown>", spawn "lux -s 10%")
 
     -- EXPLORER
-        , ("M-S-e", spawn "dolphin")
+        , ("M-S-e", spawn "thunar")
 
     -- KB_GROUP Run Prompt
         , ("M-S-<Return>", spawn "dmenu_run -i -p \"Run: \"") -- Dmenu
     -- KB_GROUP Other Dmenu Prompts
-    -- In Xmonad and many tiling window managers, M-p is the default keybinding to
-    -- launch dmenu_run, so I've decided to use M-p plus KEY for these dmenu scripts.
-        , ("M-p h", spawn "dm-hub")       -- allows access to all dmscripts
-        , ("M-p i", spawn "dm-maim")      -- screenshots (images)
-        , ("M-p k", spawn "dm-kill")      -- kill processes
-        , ("M-p q", spawn "dm-logout")    -- logout menu
-        , ("M-p s", spawn "dm-websearch") -- search various search engines
-        -- , ("M-p a", spawn "dm-sounds")    -- choose an ambient background
-        -- , ("M-p b", spawn "dm-setbg")     -- set a background
-        --, ("M-p c", spawn "dm-colpick")   -- pick color from our scheme
-        -- , ("M-p e", spawn "dm-confedit")  -- edit config files
-        -- , ("M-p m", spawn "dm-man")       -- manpages
-        -- , ("M-p n", spawn "dm-note")      -- store one-line notes and copy them
-        -- , ("M-p o", spawn "dm-bookman")   -- qutebrowser bookmarks/history
-        -- , ("M-p p", spawn "passmenu")     -- passmenu
-        -- , ("M-p r", spawn "dm-reddit")    -- reddio (a reddit viewer)
 
     -- KB_GROUP Useful programs to have a keybinding for launch
         , ("M-<Return>", spawn myTerminal)
@@ -442,19 +425,9 @@ myKeys =
         , ("M-s c", namedScratchpadAction myScratchPads "calculator")
 
     -- KB_GROUP Multimedia Keys
-    -- NOT WORKING ------- NOT WORKING ------- NOT WORKING ------- NOT WORKING ------- NOT WORKING ------- 
-        , ("<XF86AudioPlay>", spawn "spotifycli --play")
-        , ("<XF86AudioPrev>", spawn "spotifycli --previous")
-        , ("<XF86AudioNext>", spawn "spotifycli --next")
         , ("<XF86AudioMute>", spawn "amixer set Master toggle")
-        -- , ("<XF86AudioLowerVolume>", spawn "amixer set Master 5%- unmute")
-        -- , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
-        -- , ("<XF86HomePage>", spawn "qutebrowser https://www.youtube.com/c/DistroTube")
-        -- , ("<XF86Search>", spawn "dm-websearch")
-        -- , ("<XF86Mail>", runOrRaise "thunderbird" (resource =? "thunderbird"))
-        -- , ("<XF86Calculator>", runOrRaise "qalculate-gtk" (resource =? "qalculate-gtk"))
-        -- , ("<XF86Eject>", spawn "toggleeject")
-        -- , ("<Print>", spawn "dm-maim")
+        , ("<XF86AudioLowerVolume>", spawn "amixer set Master 5%- unmute")
+        , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
         ]
     -- The following lines are needed for named scratchpads.
           where nonNSP          = WSIs (return (\ws -> W.tag ws /= "NSP"))
