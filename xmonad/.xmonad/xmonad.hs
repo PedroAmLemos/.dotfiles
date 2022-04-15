@@ -113,7 +113,7 @@ myStartupHook = do
     spawnOnce "picom --experimental-backends -b"
     spawnOnce "nitrogen --restore &"
     spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 0 --transparent true --alpha 0 --tint 0x282c34  --height 22 &"
-    spawnOnce "./.fehbg &"
+    -- spawnOnce "./.fehbg &"
     -- spawnOnce "xargs xwallpaper --stretch < ~/Pictures/Wallpapers"
 
     spawnOnce "dunst &"
